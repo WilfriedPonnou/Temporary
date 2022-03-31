@@ -1,48 +1,17 @@
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:36:18: not found: type SparkConf
-[error]   val conf = new SparkConf().setMaster("local[2]").setAppName("KafkaConsumer")
-[error]                  ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:37:17: not found: type StreamingContext
-[error]   val ssc = new StreamingContext(sparkConf, Seconds(1))
-[error]                 ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:37:34: not found: value sparkConf
-[error]   val ssc = new StreamingContext(sparkConf, Seconds(1))
-[error]                                  ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:37:45: not found: value Seconds
-[error]   val ssc = new StreamingContext(sparkConf, Seconds(1))
-[error]                                             ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:49:16: Symbol 'type org.apache.spark.internal.Logging' is missing from the classpath.
-[error] This symbol is required by 'object org.apache.spark.streaming.kafka010.KafkaUtils'.
-[error] Make sure that type Logging is in your classpath and check for conflicting dependencies with `-Ylog-classpath`.
-[error] A full rebuild may help if 'KafkaUtils.class' was compiled against an incompatible version of org.apache.spark.internal.
-[error]   val stream = KafkaUtils.createDirectStream[String,String](
-[error]                ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:50:5: Symbol 'type org.apache.spark.streaming.api.java.JavaStreamingContext' is missing from the classpath.
-[error] This symbol is required by 'value org.apache.spark.streaming.kafka010.KafkaUtils.jssc'.
-[error] Make sure that type JavaStreamingContext is in your classpath and check for conflicting dependencies with `-Ylog-classpath`.
-[error] A full rebuild may help if 'KafkaUtils.class' was compiled against an incompatible version of org.apache.spark.streaming.api.java.
-[error]     ssc,
-[error]     ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:52:5: not found: value Suscribe
-[error]     Suscribe[String,String](topics,kafkaParams)
-[error]     ^
-[error] 7 errors found
-[error] (Compile / compileIncremental) Compilation failed
-[error] Total time: 25 s, completed Mar 31, 2022, 8:57:01 PM
-
-
-
-WHEN I RE-RUN:
-
-sbt.librarymanagement.ResolveException: Error downloading org.apache.spark:spark-core_2.13:3.1.2
+allocius@allocius-HP-EliteBook-8570p:~/Desktop/Project consumer$ sbt run
+[info] welcome to sbt 1.5.5 (Ubuntu Java 11.0.14.1)
+[info] loading project definition from /home/allocius/Desktop/Project consumer/project
+[info] loading settings for project project-consumer from build.sbt ...
+[info] set current project to Consumer (in build file:/home/allocius/Desktop/Project%20consumer/)
+[info] Updating 
+[info] Resolved  dependencies
+[warn] 
+[warn]  Note: Unresolved dependencies path:
+[error] sbt.librarymanagement.ResolveException: Error downloading org.apache.spark:spark-streaming-kafka:3.2.1
 [error]   Not found
 [error]   Not found
-[error]   not found: /home/allocius/.ivy2/localorg.apache.spark/spark-core_2.13/3.1.2/ivys/ivy.xml
-[error]   not found: https://repo1.maven.org/maven2/org/apache/spark/spark-core_2.13/3.1.2/spark-core_2.13-3.1.2.pom
-[error] Error downloading org.apache.spark:spark-sql_2.13:3.1.2
-[error]   Not found
-[error]   Not found
-[error]   not found: /home/allocius/.ivy2/localorg.apache.spark/spark-sql_2.13/3.1.2/ivys/ivy.xml
-[error]   not found: https://repo1.maven.org/maven2/org/apache/spark/spark-sql_2.13/3.1.2/spark-sql_2.13-3.1.2.pom
+[error]   not found: /home/allocius/.ivy2/localorg.apache.spark/spark-streaming-kafka/3.2.1/ivys/ivy.xml
+[error]   not found: https://repo1.maven.org/maven2/org/apache/spark/spark-streaming-kafka/3.2.1/spark-streaming-kafka-3.2.1.pom
 [error]         at lmcoursier.CoursierDependencyResolution.unresolvedWarningOrThrow(CoursierDependencyResolution.scala:258)
 [error]         at lmcoursier.CoursierDependencyResolution.$anonfun$update$38(CoursierDependencyResolution.scala:227)
 [error]         at scala.util.Either$LeftProjection.map(Either.scala:573)
@@ -73,14 +42,10 @@ sbt.librarymanagement.ResolveException: Error downloading org.apache.spark:spark
 [error]         at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 [error]         at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 [error]         at java.base/java.lang.Thread.run(Thread.java:829)
-[error] (update) sbt.librarymanagement.ResolveException: Error downloading org.apache.spark:spark-core_2.13:3.1.2
+[error] (update) sbt.librarymanagement.ResolveException: Error downloading org.apache.spark:spark-streaming-kafka:3.2.1
 [error]   Not found
 [error]   Not found
-[error]   not found: /home/allocius/.ivy2/localorg.apache.spark/spark-core_2.13/3.1.2/ivys/ivy.xml
-[error]   not found: https://repo1.maven.org/maven2/org/apache/spark/spark-core_2.13/3.1.2/spark-core_2.13-3.1.2.pom
-[error] Error downloading org.apache.spark:spark-sql_2.13:3.1.2
-[error]   Not found
-[error]   Not found
-[error]   not found: /home/allocius/.ivy2/localorg.apache.spark/spark-sql_2.13/3.1.2/ivys/ivy.xml
-[error]   not found: https://repo1.maven.org/maven2/org/apache/spark/spark-sql_2.13/3.1.2/spark-sql_2.13-3.1.2.pom
-[error] Total time: 2 s, completed Mar 31, 2022, 9:01:38 PM
+[error]   not found: /home/allocius/.ivy2/localorg.apache.spark/spark-streaming-kafka/3.2.1/ivys/ivy.xml
+[error]   not found: https://repo1.maven.org/maven2/org/apache/spark/spark-streaming-kafka/3.2.1/spark-streaming-kafka-3.2.1.pom
+[error] Total time: 2 s, completed Mar 31, 2022, 9:29:47 PM
+
