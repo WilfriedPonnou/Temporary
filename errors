@@ -3,6 +3,52 @@ allocius@allocius-HP-EliteBook-8570p:~/Desktop/Project consumer$ sbt run
 [info] loading project definition from /home/allocius/Desktop/Project consumer/project
 [info] loading settings for project project-consumer from build.sbt ...
 [info] set current project to Consumer (in build file:/home/allocius/Desktop/Project%20consumer/)
+[info] compiling 1 Scala source to /home/allocius/Desktop/Project consumer/target/scala-2.12/classes ...
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:3:19: object kafka is not a member of package org.apache
+[error] import org.apache.kafka.clients.consumer.ConsumerRecord
+[error]                   ^
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:4:19: object kafka is not a member of package org.apache
+[error] import org.apache.kafka.common.serialization.StringDeserializer
+[error]                   ^
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:5:35: object kafka is not a member of package org.apache.spark.streaming
+[error] import org.apache.spark.streaming.kafka.LocationStrategies.PreferConsistent
+[error]                                   ^
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:6:35: object kafka is not a member of package org.apache.spark.streaming
+[error] import org.apache.spark.streaming.kafka.ConsumerStrategies.Subscribe
+[error]                                   ^
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:27:18: not found: type SparkConf
+[error]   val conf = new SparkConf().setMaster("local[2]").setAppName("KafkaConsumer")
+[error]                  ^
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:28:34: not found: value sparkConf
+[error]   val ssc = new StreamingContext(sparkConf, Seconds(1))
+[error]                                  ^
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:31:35: not found: type StringDeserializer
+[error]     "key.deserializer" -> classOf[StringDeserializer],
+[error]                                   ^
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:32:37: not found: type StringDeserializer
+[error]     "value.deserializer" -> classOf[StringDeserializer],
+[error]                                     ^
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:40:16: not found: value KafkaUtils
+[error]   val stream = KafkaUtils.createDirectStream[String,String](
+[error]                ^
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:42:5: not found: value PreferConsistent
+[error]     PreferConsistent,
+[error]     ^
+[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:43:5: not found: value Suscribe
+[error]     Suscribe[String,String](topics,kafkaParams)
+[error]     ^
+[error] 11 errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 5 s, completed Mar 31, 2022, 9:37:04 PM
+
+ou encore :
+
+
+allocius@allocius-HP-EliteBook-8570p:~/Desktop/Project consumer$ sbt run
+[info] welcome to sbt 1.5.5 (Ubuntu Java 11.0.14.1)
+[info] loading project definition from /home/allocius/Desktop/Project consumer/project
+[info] loading settings for project project-consumer from build.sbt ...
+[info] set current project to Consumer (in build file:/home/allocius/Desktop/Project%20consumer/)
 [info] Updating 
 [info] Resolved  dependencies
 [warn] 
