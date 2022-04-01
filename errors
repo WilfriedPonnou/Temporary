@@ -1,97 +1,51 @@
-allocius@allocius-HP-EliteBook-8570p:~/Desktop/Project consumer$ sbt run
-[info] welcome to sbt 1.5.5 (Ubuntu Java 11.0.14.1)
-[info] loading project definition from /home/allocius/Desktop/Project consumer/project
-[info] loading settings for project project-consumer from build.sbt ...
-[info] set current project to Consumer (in build file:/home/allocius/Desktop/Project%20consumer/)
-[info] compiling 1 Scala source to /home/allocius/Desktop/Project consumer/target/scala-2.12/classes ...
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:3:19: object kafka is not a member of package org.apache
-[error] import org.apache.kafka.clients.consumer.ConsumerRecord
-[error]                   ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:4:19: object kafka is not a member of package org.apache
-[error] import org.apache.kafka.common.serialization.StringDeserializer
-[error]                   ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:5:35: object kafka is not a member of package org.apache.spark.streaming
-[error] import org.apache.spark.streaming.kafka.LocationStrategies.PreferConsistent
-[error]                                   ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:6:35: object kafka is not a member of package org.apache.spark.streaming
-[error] import org.apache.spark.streaming.kafka.ConsumerStrategies.Subscribe
-[error]                                   ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:27:18: not found: type SparkConf
-[error]   val conf = new SparkConf().setMaster("local[2]").setAppName("KafkaConsumer")
-[error]                  ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:28:34: not found: value sparkConf
-[error]   val ssc = new StreamingContext(sparkConf, Seconds(1))
-[error]                                  ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:31:35: not found: type StringDeserializer
-[error]     "key.deserializer" -> classOf[StringDeserializer],
-[error]                                   ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:32:37: not found: type StringDeserializer
-[error]     "value.deserializer" -> classOf[StringDeserializer],
-[error]                                     ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:40:16: not found: value KafkaUtils
-[error]   val stream = KafkaUtils.createDirectStream[String,String](
-[error]                ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:42:5: not found: value PreferConsistent
-[error]     PreferConsistent,
-[error]     ^
-[error] /home/allocius/Desktop/Project consumer/src/main/scala/KafkaConsumerService.scala:43:5: not found: value Suscribe
-[error]     Suscribe[String,String](topics,kafkaParams)
-[error]     ^
-[error] 11 errors found
-[error] (Compile / compileIncremental) Compilation failed
-[error] Total time: 5 s, completed Mar 31, 2022, 9:37:04 PM
-
-ou encore :
-
-
-allocius@allocius-HP-EliteBook-8570p:~/Desktop/Project consumer$ sbt run
-[info] welcome to sbt 1.5.5 (Ubuntu Java 11.0.14.1)
-[info] loading project definition from /home/allocius/Desktop/Project consumer/project
-[info] loading settings for project project-consumer from build.sbt ...
-[info] set current project to Consumer (in build file:/home/allocius/Desktop/Project%20consumer/)
-[info] Updating 
-[info] Resolved  dependencies
-[warn] 
-[warn]  Note: Unresolved dependencies path:
-[error] sbt.librarymanagement.ResolveException: Error downloading org.apache.spark:spark-streaming-kafka:3.2.1
-[error]   Not found
-[error]   Not found
-[error]   not found: /home/allocius/.ivy2/localorg.apache.spark/spark-streaming-kafka/3.2.1/ivys/ivy.xml
-[error]   not found: https://repo1.maven.org/maven2/org/apache/spark/spark-streaming-kafka/3.2.1/spark-streaming-kafka-3.2.1.pom
-[error]         at lmcoursier.CoursierDependencyResolution.unresolvedWarningOrThrow(CoursierDependencyResolution.scala:258)
-[error]         at lmcoursier.CoursierDependencyResolution.$anonfun$update$38(CoursierDependencyResolution.scala:227)
-[error]         at scala.util.Either$LeftProjection.map(Either.scala:573)
-[error]         at lmcoursier.CoursierDependencyResolution.update(CoursierDependencyResolution.scala:227)
-[error]         at sbt.librarymanagement.DependencyResolution.update(DependencyResolution.scala:60)
-[error]         at sbt.internal.LibraryManagement$.resolve$1(LibraryManagement.scala:59)
-[error]         at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$12(LibraryManagement.scala:133)
-[error]         at sbt.util.Tracked$.$anonfun$lastOutput$1(Tracked.scala:73)
-[error]         at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$20(LibraryManagement.scala:146)
-[error]         at scala.util.control.Exception$Catch.apply(Exception.scala:228)
-[error]         at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$11(LibraryManagement.scala:146)
-[error]         at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$11$adapted(LibraryManagement.scala:127)
-[error]         at sbt.util.Tracked$.$anonfun$inputChangedW$1(Tracked.scala:219)
-[error]         at sbt.internal.LibraryManagement$.cachedUpdate(LibraryManagement.scala:160)
-[error]         at sbt.Classpaths$.$anonfun$updateTask0$1(Defaults.scala:3678)
-[error]         at scala.Function1.$anonfun$compose$1(Function1.scala:49)
-[error]         at sbt.internal.util.$tilde$greater.$anonfun$$u2219$1(TypeFunctions.scala:62)
-[error]         at sbt.std.Transform$$anon$4.work(Transform.scala:68)
-[error]         at sbt.Execute.$anonfun$submit$2(Execute.scala:282)
-[error]         at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:23)
-[error]         at sbt.Execute.work(Execute.scala:291)
-[error]         at sbt.Execute.$anonfun$submit$1(Execute.scala:282)
-[error]         at sbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:265)
-[error]         at sbt.CompletionService$$anon$2.call(CompletionService.scala:64)
-[error]         at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-[error]         at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
-[error]         at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-[error]         at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-[error]         at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-[error]         at java.base/java.lang.Thread.run(Thread.java:829)
-[error] (update) sbt.librarymanagement.ResolveException: Error downloading org.apache.spark:spark-streaming-kafka:3.2.1
-[error]   Not found
-[error]   Not found
-[error]   not found: /home/allocius/.ivy2/localorg.apache.spark/spark-streaming-kafka/3.2.1/ivys/ivy.xml
-[error]   not found: https://repo1.maven.org/maven2/org/apache/spark/spark-streaming-kafka/3.2.1/spark-streaming-kafka-3.2.1.pom
-[error] Total time: 2 s, completed Mar 31, 2022, 9:29:47 PM
-
+sbt:Consumer> run
+[info] running KafkaConsumerService
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+22/04/01 12:57:50 INFO SparkContext: Running Spark version 3.2.1
+22/04/01 12:57:51 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+22/04/01 12:57:51 INFO ResourceUtils: ==============================================================
+22/04/01 12:57:51 INFO ResourceUtils: No custom resources configured for spark.driver.
+22/04/01 12:57:51 INFO ResourceUtils: ==============================================================
+22/04/01 12:57:51 INFO SparkContext: Submitted application: KafkaConsumer
+22/04/01 12:57:51 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)    
+22/04/01 12:57:51 INFO ResourceProfile: Limiting resource is cpu
+22/04/01 12:57:51 INFO ResourceProfileManager: Added ResourceProfile id: 0
+22/04/01 12:57:51 INFO SecurityManager: Changing view acls to: PONNOU Wilfried
+22/04/01 12:57:51 INFO SecurityManager: Changing modify acls to: PONNOU Wilfried
+22/04/01 12:57:51 INFO SecurityManager: Changing view acls groups to:
+22/04/01 12:57:51 INFO SecurityManager: Changing modify acls groups to:
+22/04/01 12:57:51 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(PONNOU Wilfried); groups with view permissions: Set(); users  with modify permissions: Set(PONNOU Wilfried); groups with modify permissions: Set()
+22/04/01 12:57:53 INFO Utils: Successfully started service 'sparkDriver' on port 55891.
+22/04/01 12:57:53 INFO SparkEnv: Registering MapOutputTracker
+22/04/01 12:57:53 INFO SparkEnv: Registering BlockManagerMaster
+22/04/01 12:57:53 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+22/04/01 12:57:53 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+22/04/01 12:57:53 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[error] (run-main-3) java.lang.NoClassDefFoundError: com/fasterxml/jackson/databind/Module
+[error] java.lang.NoClassDefFoundError: com/fasterxml/jackson/databind/Module
+[error]         at org.apache.spark.storage.BlockManager.<init>(BlockManager.scala:198)
+[error]         at org.apache.spark.SparkEnv$.create(SparkEnv.scala:371)
+[error]         at org.apache.spark.SparkEnv$.createDriverEnv(SparkEnv.scala:191)
+[error]         at org.apache.spark.SparkContext.createSparkEnv(SparkContext.scala:277)
+[error]         at org.apache.spark.SparkContext.<init>(SparkContext.scala:460)
+[error]         at KafkaConsumerService$.delayedEndpoint$KafkaConsumerService$1(KafkaConsumerService.scala:14)
+[error]         at KafkaConsumerService$delayedInit$body.apply(KafkaConsumerService.scala:10)
+[error]         at scala.Function0.apply$mcV$sp(Function0.scala:39)
+[error]         at scala.Function0.apply$mcV$sp$(Function0.scala:39)
+[error]         at scala.runtime.AbstractFunction0.apply$mcV$sp(AbstractFunction0.scala:17)
+[error]         at scala.App.$anonfun$main$1$adapted(App.scala:80)
+[error]         at scala.collection.immutable.List.foreach(List.scala:431)
+[error]         at scala.App.main(App.scala:80)
+[error]         at scala.App.main$(App.scala:78)
+[error]         at KafkaConsumerService$.main(KafkaConsumerService.scala:10)
+[error]         at KafkaConsumerService.main(KafkaConsumerService.scala)
+[error]         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[error]         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[error]         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[error]         at java.lang.reflect.Method.invoke(Method.java:498)
+[error] Caused by: java.lang.ClassNotFoundException: com.fasterxml.jackson.databind.Module
+[error]         at java.net.URLClassLoader.findClass(URLClassLoader.java:387)
+[error] stack trace is suppressed; run last Compile / bgRun for the full output
+[error] Nonzero exit code: 1
+[error] (Compile / run) Nonzero exit code: 1
+[error] Total time: 6 s, completed 1 avr. 2022 12:57:54
